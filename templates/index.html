@@ -14,18 +14,18 @@
 </head>
 <body>
 
-    <h1>Double-Slit Experiment Simulation</h1>
+    <h1>Multi-Slit Experiment Simulation</h1>
     <img id="plot" src="/plot?n={{ n }}&d={{ d }}&v={{ v }}&t={{ t }}" alt="Probability Density Plot">
 
     <div class="slider-container">
         <label for="n">Number of slits: <span id="n_value">{{ n }}</span></label>
-        <input type="range" id="n" min="1" max="10" step="1" value="{{ n }}">
+        <input type="range" id="n" min="1" max="5" step="1" value="{{ n }}">
         <label for="d">Distance between slits: <span id="d_value">{{ d }}</span></label>
         <input type="range" id="d" min="0.1" max="5.0" step="0.1" value="{{ d }}">
         <label for="v">Velocity (v): <span id="v_value">{{ v }}</span></label>
         <input type="range" id="v" min="0.1" max="5" step="0.1" value="{{ v }}">
         <label for="t">Time (t): <span id="t_value">{{ t }}</span></label>
-        <input type="range" id="t" min="0" max="5" step="0.1" value="{{ t }}">
+        <input type="range" id="t" min="0" max="15" step="0.1" value="{{ t }}">
     </div>
     <script>
         const sliders = {
@@ -62,6 +62,23 @@
                 debounceUpdate();
             });
         }
+
+        window.addEventListener('load', () => {
+            // Reset each slider’s value to the Jinja variables:
+            sliders.n.value = "{{ n }}";
+            sliders.d.value = "{{ d }}";
+            sliders.v.value = "{{ v }}";
+            sliders.t.value = "{{ t }}";
+
+            // Reset each <span> so the numbers beside sliders match:
+            values.n.textContent = "{{ n }}";
+            values.d.textContent = parseFloat("{{ d }}").toFixed(2);
+            values.v.textContent = parseFloat("{{ v }}").toFixed(2);
+            values.t.textContent = parseFloat("{{ t }}").toFixed(2);
+
+            // Finally, regenerate the plot for those exact defaults:
+            updatePlot();
+        });
     </script>
 </body>
 </html>
