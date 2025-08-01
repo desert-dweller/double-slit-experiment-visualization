@@ -96,4 +96,4 @@ def plot():
     plt.close(fig)
     return send_file(buf, mimetype='image/png')
 
-# app.run(debug=True)
+app.run(debug=True)
