@@ -66,9 +66,9 @@ def plot():
     # Create figure with GridSpec layout
     fig = plt.figure(figsize=(10, 10))
     gs = fig.add_gridspec(2, 2, width_ratios=[1, 0.05], height_ratios=[1, 1])  # 2 rows, 2 cols; col 1 narrow for colorbar
-    ax1 = fig.add_subplot(gs[0, 0])                       # Line plot in row 0, col 0
-    ax2 = fig.add_subplot(gs[1, 0], sharex=ax1)          # Heatmap in row 1, col 0, shares x-axis with ax1
-    cax = fig.add_subplot(gs[1, 1])                      # Colorbar in row 1, col 1, next to heatmap
+    ax1 = fig.add_subplot(gs[0, 0])                         # Line plot in row 0, col 0
+    ax2 = fig.add_subplot(gs[1, 0], sharex=ax1)             # Heatmap in row 1, col 0, shares x-axis with ax1
+    cax = fig.add_subplot(gs[1, 1])                         # Colorbar in row 1, col 1, next to heatmap
 
     # Heatmap on ax2
     im = ax2.imshow(prob_density, origin='lower', extent=(x_min, x_max, y_min, y_max), 
@@ -96,4 +96,4 @@ def plot():
     plt.close(fig)
     return send_file(buf, mimetype='image/png')
 
-app.run(debug=True)
+# app.run(debug=True)
